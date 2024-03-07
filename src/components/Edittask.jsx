@@ -21,11 +21,11 @@ const style = {
 
 export default function Edittask({ tasks }) {
   const [open, setOpen] = React.useState(false);
-  const [task, setTask] = React.useState("");
+  const [task, setTask] = React.useState("tasks.task");
   console.log(task);
-  const [time, setTime] = React.useState("");
+  const [time, setTime] = React.useState("tasks.time");
   console.log(time);
-  const [iscomplete, setIscomplete] = React.useState(false);
+  const [iscomplete, setIscomplete] = React.useState(tasks.iscomplete);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
@@ -63,6 +63,7 @@ export default function Edittask({ tasks }) {
             defaultValue={tasks.time}
             onChange={(e) => setTime(e.target.value)}
           />
+          <input type="checkbox" onClick={()=>setIscomplete(!iscomplete)}/>
           <Button onClick={edit}>Edit</Button>
         </Box>
       </Modal>

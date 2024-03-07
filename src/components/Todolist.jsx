@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { delete_task } from '../redux/action'
@@ -8,9 +8,12 @@ function Todolist() {
     const todo=useSelector(state=>state.todo)
     const dispatch=useDispatch()
     console.log(todo)
+    const [iscomplete,setIscomplete]=useState(false);
   return (
     <div>
-       {todo.map(e=>
+      <Button onClick={()=>setIscomplete(true)}>is complete</Button>
+     <Button onClick={()=>setIscomplete(false)}>not complete</Button>
+       {todo.filter(e=>e.iscomplete===iscomplete).map(e=>
         <Card style={{width:"18rem",backgroundColor:"green"}}>
             <Card.Body>
                 <Card.Text>{e.task}</Card.Text>
